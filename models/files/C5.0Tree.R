@@ -6,8 +6,12 @@ modelInfo <- list(label = "Single C5.0 Tree",
                                           class = c("character"),
                                           label = c('none')),
                   grid = function(x, y, len = NULL) data.frame(parameter = "none"),
-                  fit = function(x, y, wts, param, lev, last, classProbs, ...) 
-                    C5.0(x = x, y = y, weights = wts, ...),
+                  fit = function(x, y, wts, param, lev, last, classProbs, ...) { 
+                    theDots <- list(...)
+                    argList <- list(x = x, y = y, weights = wts)
+                    argList <- c(argList, theDots)
+                    do.call("C5.0.default", argList)
+                  },
                   predict = function(modelFit, newdata, submodels = NULL) 
                     predict(modelFit, newdata),
                   prob = function(modelFit, newdata, submodels = NULL) 
