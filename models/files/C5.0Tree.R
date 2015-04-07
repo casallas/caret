@@ -10,7 +10,7 @@ modelInfo <- list(label = "Single C5.0 Tree",
                     theDots <- list(...)
                     argList <- list(x = x, y = y, weights = wts)
                     argList <- c(argList, theDots)
-                    do.call("C5.0.default", argList)
+                    do.call("C5.0", argList)
                   },
                   predict = function(modelFit, newdata, submodels = NULL) 
                     predict(modelFit, newdata),
